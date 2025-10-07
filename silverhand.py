@@ -18,6 +18,11 @@ engine.setProperty('rate', 180)
 # Initialize text-to-speech engine
 engine = pyttsx3.init()
 
+def waitforinput():
+    command = listen()
+    if "Johnny" in command:
+        assistant()
+
 def speak(text):
     engine.say(text)
     engine.runAndWait()
@@ -90,22 +95,29 @@ def assistant():
                 except Exception as e:
                     print(f"Error opening Firefox: {e}")
                     speak("Sorry, I couldn't open Firefox")
-            elif "esesha" in command or "ssh" in command:
+            elif "sleep mode" in command or "sleep" in command:
                 try:
-                    print(f"Openning ssh connection with a 192.168.55.112")
-                    speak("Openning ssh")
-                    os.system("ssh root@192.168.55.112")
+                    print(f"Entering Sleep mode")
+                    speak("Entering Sleep mode right now")
                 except Exception as e:
-                    print(f"Error opening ssh")
-                    speak("Sorry I couldn't open ssh")
-            elif "close terminal" in command:
-                try:
-                print(f"Closing terminal")
-                speak("Closing termnal now")
-                os.system("taskkill /im cmd.exe")
-                except Exception as e:
-                    print(f"I couldn't close the terminal")
-                    speak("Terminal")
+                    print(f"Error in Sleep mode Activation")
+                    speak("Error in Sleep Mode")
+#            elif "esesha" in command or "ssh" in command:
+#                try:
+#                    print(f"Openning ssh connection with a 192.168.55.112")
+#                    speak("Openning ssh")
+#                    os.system("ssh root@192.168.55.112")
+#                except Exception as e:
+#                    print(f"Error opening ssh")
+#                    speak("Sorry I couldn't open ssh")
+#            elif "close terminal" in command:
+ #               try:
+ #               print(f"Closing terminal")
+ #               speak("Closing termnal now")
+ #               os.system("taskkill /im cmd.exe")
+ #               except Exception as e:
+ #                   print(f"I couldn't close the terminal")
+ #                   speak("Terminal")
             # Komendy wymagające OpenAI
             elif "cybertron" in command: # To jest cyber Johnny ale speech recognition is dumb af
                 speak("What do you want, V?")
@@ -136,4 +148,4 @@ def assistant():
 
 
 if __name__ == "__main__":
-    assistant()
+    waitforinput()
